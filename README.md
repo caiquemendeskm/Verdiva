@@ -439,3 +439,4 @@ Este projeto foi desenvolvido para fins educacionais e de demonstração.
 **API Verdiva v1.0** - Sistema de Reciclagem Inteligente
 
 "# Verdiva" 
+"# Verdiva" 
