@@ -17,7 +17,8 @@ body {
 
 .container {
     width: 100%;
-    max-width: 1000px;
+    /* MODIFICAÇÃO ANTERIOR: Aumentado o max-width para estender o conteúdo */
+    max-width: 1200px; 
     position: relative; 
 }
 
@@ -25,7 +26,8 @@ body {
 .profile-card {
     background: rgba(255, 255, 255, 0.15); 
     border-radius: 30px;
-    padding: 40px;
+    /* MODIFICAÇÃO ANTERIOR: Ajustado o padding para estender o conteúdo lateralmente */
+    padding: 20px 40px; 
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); 
     backdrop-filter: blur(15px); 
     -webkit-backdrop-filter: blur(15px);
@@ -33,6 +35,21 @@ body {
     color: #fff; 
     margin-top: 0; 
 }
+
+/* NOVO: Regra para alinhar o logo dentro do <legend> à esquerda, ajustando sua margem */
+.profile-card legend {
+    /* Garante que a legend ocupe a largura total para posicionamento */
+    width: 100%; 
+    /* Alinha o conteúdo da legend à esquerda */
+    text-align: left; 
+}
+
+.profile-card legend img {
+    /* Força o logo a se mover para a esquerda, anulando o padding da legend/fieldset */
+    margin-left: -25px; 
+    display: block;
+}
+
 
 /* Estilo do cabeçalho superior (sem o título principal) */
 .top-header-info {
@@ -43,7 +60,8 @@ body {
     position: absolute;
     top: 29px;
     left: 0;
-    padding: 0 40px; 
+    /* MODIFICAÇÃO ANTERIOR: Ajustado o padding lateral para alinhamento */
+    padding: 0 50px; 
     transform: translateY(-50%); 
     z-index: 10;
 }
