@@ -3,102 +3,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Verdiva - Perfil do Usuário</title>
+    <title>Verdiva - Menu Principal</title>
     <link rel="stylesheet" href="Css/Homepage.css">
- <style>
-                .nav-button {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            color: #fff;
-            /* AJUSTADO: Aumentado o padding para 30px (mais alto) */
-            padding: 30px; 
-            /* Estilo Glassmorphism (mantido para atratividade) */
-            background: rgba(255, 255, 255, 0.15); 
-            border-radius: 15px;
-            backdrop-filter: blur(8px); 
-            border: 1px solid rgba(255, 255, 255, 0.4); 
-            transition: all 0.3s ease; 
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
- 
-        /* Efeito de Hover (mantido) */
-        .nav-button:hover {
-            background: rgba(255, 255, 255, 0.3); 
-            transform: translateY(-5px); 
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4); 
-        }
-
-        .nav-button-icon {
-            /* AJUSTADO: Aumentado o ícone para 45px */
-            font-size: 45px;
-            /* Aumentado o espaçamento entre ícone e texto */
-            margin-bottom: 8px; 
-        }
-
-        .nav-button-text {
-            /* AJUSTADO: Aumentado o texto para 16px */
-            font-size: 16px;
-            font-weight: 600;
-        }
-
-        .main-nav-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr; 
-            gap: 30px;
-            margin-top: 50px; /* Espaço para o título e logo */
-            padding: 0 20px;
-        }
-
-        /* Ajuste para centralizar o conteúdo da página principal */
-        .main-page-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
-        }
-    </style>
 </head>
 <body>
-    <div class="container">
-        <div class="top-header-info">
-            <div class="header-title-section">
-            </div>
-            
-            <div class="points-indicator-top">
-                <span class="points-label">Your Points:</span>
-                <span class="points-value">1150 pts</span>
-                <span class="info-icon">ⓘ</span>
-            </div>
-        </div>
-        <fieldset class="profile-card">
-            <legend>
-             <img src="Imagens/icone.png" alt="Verdiva logo" style="width: 25%; height: 25%;">
-            </legend>
-            <div class="main-page-content">
-                <h1 class="main-title-card" style="margin-top: -80px; margin-bottom: 30px;">Página Principal</h1>
-                
-                <div class="main-nav-grid">
-                    <a href="depositar_materias.html" class="nav-button">
-                        <span class="nav-button-icon">♻️</span>
-                        <span class="nav-button-text">Depositar Matérias</span>
-                    </a>
-                    
-                    <a href="ver_recompensas.html" class="nav-button">
-                        <span class="nav-button-icon">🎁</span>
-                        <span class="nav-button-text">Ver Recompensas</span>
-                    </a>
-                    <a href="Perfil_usuario.html" class="nav-button">
-                        <span class="nav-button-icon">👤</span>
-                        <span class="nav-button-text">Perfil do Usuário</span>
-                    </a>
-                </div>
-            </div>
+    <div class="totem-container">
+        <!-- Header do Totem -->
+        <div class="totem-header">
+            <img src="Imagens/icone.png" alt="Verdiva logo" class="totem-logo">
 
-    </fieldset>
+        </div>
+
+        <!-- Indicador de Pontos -->
+        <div class="points-banner">
+            <div class="points-info">
+                <span class="points-label">Seus Pontos:</span>
+                <span class="points-value">1150 pts</span>
+            </div>
+            <div class="points-icon">ⓘ</div>
+        </div>
+
+        <!-- Título da Página -->
+        <h2 class="page-title">MENU PRINCIPAL</h2>
+
+        <!-- Grid de Navegação Principal -->
+        <div class="nav-grid">
+            <a href="depositar_materias.html" class="nav-card">
+                <div class="nav-icon">♻️</div>
+                <div class="nav-text">Depositar Materiais</div>
+            </a>
+
+            <a href="ver_recompensas.html" class="nav-card">
+                <div class="nav-icon">🎁</div>
+                <div class="nav-text">Ver Recompensas</div>
+            </a>
+
+            <a href="Perfil_usuario.html" class="nav-card">
+                <div class="nav-icon">👤</div>
+                <div class="nav-text">Perfil do Usuário</div>
+            </a>
+        </div>
+
+        <!-- Botão de Voltar -->
+        <div class="footer-actions">
+            <a href="Frontpage.html" class="back-button">← VOLTAR</a>
+        </div>
     </div>
 </body>
 </html>
+
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Adiciona a classe fade-in ao carregar a página
+            document.body.classList.add('fade-in');
+
+            // Intercepta cliques em links internos
+            document.querySelectorAll('a[href$=".html"]').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    const targetUrl = link.getAttribute('href');
+                    // Verifica se é um link interno para .html
+                    if (targetUrl && targetUrl.endsWith('.html')) {
+                        e.preventDefault();
+                        handleTransition(targetUrl);
+                    }
+                });
+            });
+
+            function handleTransition(url) {
+                // Adiciona a classe fade-out para iniciar a transição
+                document.body.classList.remove('fade-in');
+                document.body.classList.add('fade-out');
+
+                // Espera a transição terminar (500ms) e navega
+                setTimeout(() => {
+                    window.location.href = url;
+                }, 500);
+            }
+        });
+    </script>
+

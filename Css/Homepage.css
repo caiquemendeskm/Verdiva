@@ -1,3 +1,19 @@
+/* ===================================
+   RESET E VARIÁVEIS GLOBAIS
+   =================================== */
+
+:root {
+    --primary-color: #2ecc71;
+    --secondary-color: #27ae60;
+    --accent-color: #3498db;
+    --dark-bg: #1a1a1a;
+    --light-bg: #f8f9fa;
+    --text-dark: #2c3e50;
+    --text-light: #ecf0f1;
+    --border-radius: 20px;
+    --transition: all 0.3s ease;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -6,357 +22,354 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    /* Gradiente de fundo mantido */
-    background: linear-gradient(284deg, #60875f 0%, #c2d8c2 100%); 
-    min-height: 90vh;
+    background: linear-gradient(135deg, #60875f 0%, #c2d8c2 100%);
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 20px;
 }
 
-.container {
+/* ===================================
+   CONTAINER TOTEM
+   =================================== */
+
+.totem-container {
     width: 100%;
-    /* MODIFICAÇÃO ANTERIOR: Aumentado o max-width para estender o conteúdo */
-    max-width: 1200px; 
-    position: relative; 
-}
-
-/* Estilo Glassmorphism (Vidro Fosco) para o Card */
-.profile-card {
-    background: rgba(255, 255, 255, 0.15); 
-    border-radius: 30px;
-    /* MODIFICAÇÃO ANTERIOR: Ajustado o padding para estender o conteúdo lateralmente */
-    padding: 20px 40px; 
-    /* ALTERADO: Sombra mais suave para maior profundidade e atratividade */
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2); 
-    backdrop-filter: blur(15px); 
-    -webkit-backdrop-filter: blur(15px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    color: #fff; 
-    margin-top: 0; 
-    /* NOVO: Posição relativa para que os filhos com position: absolute se posicionem corretamente em relação ao card */
-    position: relative; 
-}
-
-/* MODIFICAÇÃO ANTERIOR: Regra para alinhar o logo dentro do <legend> à esquerda */
-.profile-card legend {
-    /* Garante que a legend ocupe a largura total para posicionamento */
-    width: 100%; 
-    /* Alinha o conteúdo da legend à esquerda */
-    text-align: left; 
-    /* NOVO: Remove a margem inferior padrão para ajudar a subir o título */
-    margin-bottom: 0; 
-}
-
-.profile-card legend img {
-    /* MODIFICAÇÃO ANTERIOR: Força o logo a se mover para a esquerda */
-    margin-left: -25px; 
-    display: block;
-}
-
-
-/* Estilo do cabeçalho superior (sem o título principal) */
-.top-header-info {
+    max-width: 900px;
+    background: rgba(255, 255, 255, 0.50);
+    border-radius: var(--border-radius);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    padding: 40px 30px;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    position: absolute;
-    /* NOVO: Ajustado para que fique dentro do card. */
-    top: 10px; 
-    left: 0;
-    /* NOVO: Ajustado para 40px para alinhar com o padding lateral do card. */
-    padding: 0 40px; 
-    /* NOVO: Removido o transform, pois não é mais necessário para movê-lo para fora */
-    transform: none; 
-    z-index: 10;
+    flex-direction: column;
+    gap: 30px;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.3);
 }
 
-/* Container para Logo (agora apenas o logo) */
-.header-title-section {
-    /* Removido o display: flex, gap e align-items para não quebrar o layout,
-       pois o elemento interno .logo-unit já é flex */
-    /* background: rgba(255, 255, 255, 0.1); /* Removido o fundo para focar apenas no logo */
-    padding: 0; /* Removido o padding */
-    border-radius: 0;
-    backdrop-filter: none;
-    border: none;
-}
+/* ===================================
+   HEADER TOTEM
+   =================================== */
 
-/* Container do Logo e Nome (Vertical) */
-.logo-unit {
+.totem-header {
+    text-align: center;
+    padding: 20px 0;
+    border-bottom: 3px solid var(--primary-color);
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    padding: 10px 15px; /* Adicionado padding para dar forma de 'aba' */
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(5px);
+    gap: 15px;
+}
+
+.totem-logo {
+    width: 105px;
+    height: 105px;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+}
+
+.totem-title {
+    font-size: 2.8rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: 2px;
+    margin: 0;
+}
+
+/* ===================================
+   BANNER DE PONTOS
+   =================================== */
+
+.points-banner {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    padding: 20px 30px;
     border-radius: 15px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 8px 20px rgba(46, 204, 113, 0.3);
 }
 
-.logo-icon-header {
-    width: 45px; 
-    height: 45px;
-    margin-bottom: 3px; 
-}
-
-.logo-brand-name {
-    font-size: 14px;
-    font-weight: 700;
-    color: #fff; 
-    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5); 
-}
-
-/* NOVO: Estilo para o título principal dentro do card */
-.main-title-card {
-    font-size: 24px; 
-    font-weight: 600;
-    color: #fff;
-    text-align: center; /* Centralizado */
-    /* ALTERADO: Adicionada uma sombra sutil para destacar o texto e tornar mais atraente */
-    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5); 
-    /* ALTERAÇÃO: Ajustado o margin-top de -80px para 40px para dar espaço após o novo posicionamento do top-header-info */
-    margin-top: 40px;
-    margin-bottom: 30px; /* Espaço para o conteúdo */
-    /* Linha de separação sutil */
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2); 
-    padding-bottom: 10px;
+.points-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
 }
 
 .points-label {
-    font-size: 12px;
-    color: rgba(255, 255, 255, 0.7);
+    font-size: 1rem;
+    opacity: 0.9;
+    font-weight: 500;
 }
 
 .points-value {
-    font-size: 14px;
-    font-weight: 600;
-    color: #fff;
+    font-size: 1.8rem;
+    font-weight: 900;
+    letter-spacing: 1px;
 }
 
-.info-icon {
-    width: 18px;
-    height: 18px;
+.points-icon {
+    width: 40px;
+    height: 40px;
     background: rgba(255, 255, 255, 0.2);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 10px;
-    color: #fff;
+    font-size: 1.2rem;
     cursor: pointer;
+    transition: var(--transition);
 }
 
-/* Estilos de Conteúdo (Card Interior) */
-.card-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
-    /* Removido o padding-top de 10px */
+.points-icon:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
 }
 
-/* Left Section - ALINHAMENTO HORIZONTAL */
-.left-section {
-    display: flex;
-    flex-direction: row; 
-    align-items: flex-start;
-    gap: 30px;
-}
+/* ===================================
+   TÍTULO DA PÁGINA
+   =================================== */
 
-.personal-info {
-    flex-grow: 1; 
-}
-
-.personal-info h2 {
-    font-size: 18px;
-    color: #fff;
-    margin-bottom: 20px;
-    font-weight: 500;
-}
-
-.info-item {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 15px;
-    font-size: 14px;
-}
-
-.info-item .icon {
-    font-size: 16px;
-    color: #8cff9a; 
-}
-
-.info-item .label {
-    color: rgba(255, 255, 255, 0.7);
-    font-weight: 400;
-    min-width: 80px;
-}
-
-.info-item .value {
-    color: #fff;
-    font-weight: 400;
-}
-
-.avatar-placeholder {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.1); 
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    margin-top: 0; 
-    flex-shrink: 0; 
-}
-
-.right-section {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-}
-
-.points-section h2,
-.history-section h2 {
-    font-size: 18px;
-    color: #fff;
-    margin-bottom: 15px;
-    font-weight: 500;
-}
-
-.points-display {
-    display: flex;
-    align-items: baseline;
-    gap: 10px;
-    margin-bottom: 10px;
-}
-
-.points-number {
-    font-size: 48px;
+.page-title {
+    font-size: 2rem;
     font-weight: 700;
-    color: #fff;
+    text-align: center;
+    color: var(--text-dark);
+    letter-spacing: 1px;
+    margin: 10px 0;
 }
 
-.points-unit {
-    font-size: 18px;
-    color: rgba(255, 255, 255, 0.7);
-    font-weight: 600;
+/* ===================================
+   GRID DE NAVEGAÇÃO
+   =================================== */
+
+.nav-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 25px;
+    padding: 20px 0;
+    flex: 1;
 }
 
-.points-note {
-    font-size: 12px;
-    color: rgba(255, 255, 255, 0.5);
-    margin-top: -5px; 
-}
-
-.history-list {
+.nav-card {
+    background: white;
+    border: 2px solid rgba(46, 204, 113, 0.2);
+    border-radius: 20px;
+    padding: 40px 25px;
+    text-decoration: none;
+    color: var(--text-dark);
     display: flex;
     flex-direction: column;
-    gap: 12px;
-}
-
-.history-item {
-    display: grid;
-    grid-template-columns: 30px 1fr 1fr 80px;
     align-items: center;
-    gap: 15px;
-    padding: 12px;
-    background: rgba(255, 255, 255, 0.05); 
-    border-radius: 8px;
-    font-size: 13px;
+    gap: 20px;
+    transition: var(--transition);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    cursor: pointer;
+    min-height: 250px;
+    justify-content: center;
 }
 
-.history-icon {
-    font-size: 16px;
+.nav-card:hover {
+    background: linear-gradient(135deg, rgba(46, 204, 113, 0.05), rgba(39, 174, 96, 0.05));
+    border-color: var(--primary-color);
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(46, 204, 113, 0.2);
+}
+
+.nav-card:active {
+    transform: translateY(-4px);
+}
+
+.nav-icon {
+    font-size: 4rem;
+    display: block;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+    transition: var(--transition);
+}
+
+.nav-card:hover .nav-icon {
+    transform: scale(1.15) rotate(5deg);
+}
+
+.nav-text {
+    font-size: 1.3rem;
+    font-weight: 700;
     text-align: center;
-    color: #8cff9a;
+    letter-spacing: 0.5px;
+    line-height: 1.3;
 }
 
-.history-date {
-    color: rgba(255, 255, 255, 0.7);
-    font-weight: 400;
+/* ===================================
+   AÇÕES DO RODAPÉ
+   =================================== */
+
+.footer-actions {
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+    border-top: 2px solid rgba(46, 204, 113, 0.2);
 }
 
-.history-desc {
-    color: rgba(255, 255, 255, 0.9);
-    font-size: 13px;
-}
-
-.history-points {
-    text-align: right;
+.back-button {
+    background: rgba(46, 204, 113, 0.1);
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+    padding: 15px 40px;
+    border-radius: 15px;
+    font-size: 1.1rem;
     font-weight: 600;
-    color: #8cff9a; 
+    text-decoration: none;
+    transition: var(--transition);
+    cursor: pointer;
+    letter-spacing: 0.5px;
 }
 
-.history-item:nth-child(3) .history-points,
-.history-item:nth-child(4) .history-points {
-    color: #e74c3c; 
+.back-button:hover {
+    background: var(--primary-color);
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(46, 204, 113, 0.3);
 }
 
+.back-button:active {
+    transform: translateY(-1px);
+}
 
-/* Responsive Design */
+/* ===================================
+   RESPONSIVE DESIGN
+   =================================== */
+
 @media (max-width: 768px) {
-    .profile-card {
-        padding: 30px;
-        margin-top: 20px; 
+    .totem-container {
+        padding: 30px 20px;
+        gap: 25px;
+        max-width: 100%;
     }
 
-    .top-header-info {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        padding: 0 30px;
-        /* Ajuste do posicionamento responsivo para dentro do card */
-        transform: none; 
-        top: 20px; 
-        gap: 10px;
-    }
-    
-    .header-title-section {
-        margin-bottom: 5px;
+    .totem-title {
+        font-size: 2.2rem;
     }
 
-    .points-indicator-top {
-        position: static;
-        width: 100%;
-        justify-content: center;
-        margin-top: 10px;
+    .points-banner {
+        padding: 15px 20px;
     }
 
-    .main-title-card {
-        font-size: 20px;
-        /* Manter um valor menor para mobile */
-        margin-top: 100px; /* Aumentado para dar espaço ao top-header-info que agora é posicionado estaticamente no mobile */
+    .points-value {
+        font-size: 1.5rem;
     }
 
-    .card-content {
-        grid-template-columns: 1fr;
-        gap: 30px;
-    }
-    
-    /* Left Section - Volta ao Layout Vertical no Mobile */
-    .left-section {
-        flex-direction: column; 
-        align-items: center;
+    .page-title {
+        font-size: 1.6rem;
     }
 
-    .avatar-placeholder {
-        margin-bottom: 20px;
+    .nav-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 20px;
     }
 
-    .history-item {
-        grid-template-columns: 1fr;
-        gap: 5px;
+    .nav-card {
+        padding: 30px 20px;
+        min-height: 200px;
+        gap: 15px;
+    }
+
+    .nav-icon {
+        font-size: 3rem;
+    }
+
+    .nav-text {
+        font-size: 1.1rem;
+    }
+
+    .back-button {
+        padding: 12px 30px;
+        font-size: 1rem;
     }
 }
 
 @media (max-width: 480px) {
-    .profile-card {
-        padding: 20px;
+    .totem-container {
+        padding: 20px 15px;
+        gap: 20px;
     }
 
-    .points-number {
-        font-size: 36px;
+    .totem-logo {
+        width: 75px;
+        height: 75px;
+    }
+
+    .totem-title {
+        font-size: 1.8rem;
+    }
+
+    .points-banner {
+        padding: 12px 15px;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .points-info {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .points-label {
+        font-size: 0.9rem;
+    }
+
+    .points-value {
+        font-size: 1.3rem;
+    }
+
+    .page-title {
+        font-size: 1.4rem;
+    }
+
+    .nav-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .nav-card {
+        padding: 25px 15px;
+        min-height: 150px;
+        gap: 12px;
+    }
+
+    .nav-icon {
+        font-size: 2.5rem;
+    }
+
+    .nav-text {
+        font-size: 1rem;
+    }
+
+    .back-button {
+        padding: 10px 25px;
+        font-size: 0.95rem;
     }
 }
+
+
+
+/* ===================================
+   ANIMAÇÃO DE TRANSIÇÃO DE PÁGINA (FADE)
+   =================================== */
+
+body {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+body.fade-in {
+    opacity: 1;
+}
+
+body.fade-out {
+    opacity: 0;
+}
+
