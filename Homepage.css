@@ -8,7 +8,7 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     /* Gradiente de fundo mantido */
     background: linear-gradient(284deg, #60875f 0%, #c2d8c2 100%); 
-    min-height: 100vh;
+    min-height: 90vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -28,7 +28,8 @@ body {
     border-radius: 30px;
     /* MODIFICAÇÃO ANTERIOR: Ajustado o padding para estender o conteúdo lateralmente */
     padding: 20px 40px; 
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); 
+    /* ALTERADO: Sombra mais suave para maior profundidade e atratividade */
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2); 
     backdrop-filter: blur(15px); 
     -webkit-backdrop-filter: blur(15px);
     border: 1px solid rgba(255, 255, 255, 0.3);
@@ -115,6 +116,8 @@ body {
     font-weight: 600;
     color: #fff;
     text-align: center; /* Centralizado */
+    /* ALTERADO: Adicionada uma sombra sutil para destacar o texto e tornar mais atraente */
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5); 
     /* ALTERAÇÃO: Ajustado o margin-top de -80px para 40px para dar espaço após o novo posicionamento do top-header-info */
     margin-top: 40px;
     margin-bottom: 30px; /* Espaço para o conteúdo */
@@ -296,7 +299,7 @@ body {
 @media (max-width: 768px) {
     .profile-card {
         padding: 30px;
-        margin-top: 70px; 
+        margin-top: 20px; 
     }
 
     .top-header-info {
