@@ -23,12 +23,14 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: linear-gradient(135deg, #60875f 0%, #c2d8c2 100%);
-    min-height: 100vh;
+    /* Otimização para 4:3 e sem scroll */
+    height: 100vh; /* Usa 100% da altura da viewport */
+    width: 100vw; /* Usa 100% da largura da viewport */
+    overflow: hidden; /* Remove a rolagem */
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 10px;
-    overflow: hidden; /* Remove o scroll do body */
+    padding: 0; /* Remove padding do body para maximizar o espaço */
 }
 
 /* ===================================
@@ -36,19 +38,20 @@ body {
    =================================== */
 
 .totem-container {
-    width: 100%;
-    max-width: 1000px;
+    /* Otimização para 4:3 */
+    width: 120vh; /* 4/3 de 100vh = 75vh. Garante proporção 4:3 quando a altura é 100vh */
+    max-width: 100%; /* Limite máximo de largura */
+    height: 103vh; /* Ocupa toda a altura disponível */
+    
     background: rgba(255, 255, 255, 0.50);
     border-radius: var(--border-radius);
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-    padding: 15px 30px; /* Reduzido */
+    padding: 20px; /* Reduz padding para economizar espaço */
     display: flex;
     flex-direction: column;
-    gap: 10px; /* Reduzido */
+    gap: 10px; /* Reduz o espaçamento entre os elementos */
     backdrop-filter: blur(10px);
     border: 2px solid rgba(255, 255, 255, 0.3);
-    height: calc(100vh - 20px); /* Garante que o container ocupe a altura restante */
-    overflow-y: hidden; /* Remove a rolagem do container */
 }
 
 /* ===================================
@@ -57,17 +60,17 @@ body {
 
 .totem-header {
     text-align: center;
-    padding: 5px 0; /* Reduzido */
+    padding: 10px 0; /* Reduz padding */
     border-bottom: 3px solid var(--primary-color);
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 5px; /* Reduzido */
+    gap: 5px; /* Reduz espaçamento */
 }
 
 .totem-logo {
-    width: 70px; /* Reduzido */
-    height: 70px; /* Reduzido */
+    width: 80px; /* Reduz o tamanho do logo */
+    height: 80px;
     filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
 }
 
@@ -89,8 +92,8 @@ body {
 .points-banner {
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     color: white;
-    padding: 10px 20px; /* Reduzido */
-    border-radius: 10px; /* Reduzido */
+    padding: 10px 20px; /* Reduz padding */
+    border-radius: 15px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -110,7 +113,7 @@ body {
 }
 
 .points-value {
-    font-size: 1.3rem; /* Reduzido */
+    font-size: 1.5rem; /* Reduz o tamanho da fonte */
     font-weight: 900;
     letter-spacing: 1px;
 }
@@ -138,12 +141,12 @@ body {
    =================================== */
 
 .page-title {
-    font-size: 1.5rem; /* Reduzido */
+    font-size: 1.5rem; /* Reduz o tamanho da fonte */
     font-weight: 700;
     text-align: center;
     color: var(--text-dark);
     letter-spacing: 1px;
-    margin: 5px 0; /* Reduzido */
+    margin: 5px 0; /* Reduz margem */
 }
 
 /* ===================================
@@ -153,20 +156,22 @@ body {
 .profile-content {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 10px; /* Reduzido */
+    gap: 15px; /* Reduz o espaçamento do grid */
     flex: 1;
-    overflow-y: hidden; /* Remove rolagem do container principal */
 }
 
 .profile-section {
-    background: linear-gradient(135deg, rgba(46, 204, 113, 0.05), rgba(39, 174, 96, 0.05));
-    border: 2px solid rgba(46, 204, 113, 0.2);
-    border-radius: 10px; /* Reduzido */
-    padding: 10px; /* Reduzido */
+    /* Glassmorphism moderado */
+    background: rgba(255, 255, 255, 0.2); /* Fundo branco semi-transparente */
+    backdrop-filter: blur(8px); /* Efeito de desfoque de vidro */
+    border: 1px solid rgba(255, 255, 255, 0.4); /* Borda mais suave */
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37); /* Sombra mais destacada */
+    
+    border-radius: 15px;
+    padding: 15px; /* Reduz padding */
     display: flex;
     flex-direction: column;
-    gap: 5px; /* Reduzido */
-    overflow-y: auto; /* Permite rolagem apenas nas seções, se necessário */
+    gap: 10px; /* Reduz espaçamento */
 }
 
 /* ===================================
@@ -180,14 +185,14 @@ body {
 }
 
 .avatar-circle {
-    width: 70px; /* Reduzido */
-    height: 70px; /* Reduzido */
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 2rem; /* Reduzido */
+    font-size: 3rem;
     box-shadow: 0 8px 20px rgba(46, 204, 113, 0.2);
 }
 
@@ -202,23 +207,25 @@ body {
 }
 
 .section-title {
-    font-size: 1.1rem; /* Reduzido */
+    font-size: 1.4rem;
     font-weight: 700;
     color: var(--text-dark);
     text-align: center;
-    padding-bottom: 5px; /* Reduzido */
+    padding-bottom: 10px;
     border-bottom: 2px solid rgba(46, 204, 113, 0.3);
     margin-bottom: 5px;
+    /* Sombra de texto para legibilidade em glassmorphism */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
 }
 
 .info-item {
     display: flex;
     align-items: center;
-    gap: 10px; /* Reduzido */
-    padding: 8px; /* Reduzido */
-    background: white;
-    border-radius: 8px; /* Reduzido */
-    border-left: 3px solid var(--primary-color); /* Reduzido */
+    gap: 10px; /* Reduz espaçamento */
+    padding: 8px; /* Reduz padding */
+    background: rgba(255, 255, 255, 0.5); /* Fundo semi-transparente para item interno */
+    border-radius: 10px;
+    border-left: 4px solid var(--primary-color);
 }
 
 .info-icon {
@@ -247,6 +254,7 @@ body {
     font-size: 1.1rem;
     color: var(--text-dark);
     font-weight: 600;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
 }
 
 /* ===================================
@@ -257,16 +265,20 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px; /* Reduzido */
-    padding: 10px; /* Reduzido */
-    background: white;
-    border-radius: 10px; /* Reduzido */
-    border: 2px solid rgba(46, 204, 113, 0.2);
+    gap: 10px; /* Reduz espaçamento */
+    padding: 10px; /* Reduz padding */
+    /* Glassmorphism moderado */
+    background: rgba(255, 255, 255, 0.2); /* Fundo branco semi-transparente */
+    backdrop-filter: blur(4px); /* Efeito de desfoque de vidro */
+    border: 1px solid rgba(255, 255, 255, 0.4); /* Borda mais suave */
+    box-shadow: 0 4px 16px 0 rgba(31, 38, 135, 0.2); /* Sombra mais destacada */
+    
+    border-radius: 15px;
 }
 
 .points-circle {
-    width: 100px; /* Reduzido */
-    height: 100px; /* Reduzido */
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     display: flex;
@@ -278,7 +290,7 @@ body {
 }
 
 .points-number {
-    font-size: 1.8rem; /* Reduzido */
+    font-size: 2.5rem;
     font-weight: 900;
     letter-spacing: 1px;
 }
@@ -303,29 +315,34 @@ body {
 .history-section {
     display: flex;
     flex-direction: column;
-    gap: 5px; /* Reduzido */
-    padding: 10px; /* Reduzido */
-    background: white;
-    border-radius: 10px; /* Reduzido */
-    border: 2px solid rgba(46, 204, 113, 0.2);
+    gap: 10px; /* Reduz espaçamento */
+    padding: 10px; /* Reduz padding */
+    /* Glassmorphism moderado */
+    background: rgba(255, 255, 255, 0.2); /* Fundo branco semi-transparente */
+    backdrop-filter: blur(4px); /* Efeito de desfoque de vidro */
+    border: 1px solid rgba(255, 255, 255, 0.4); /* Borda mais suave */
+    box-shadow: 0 4px 16px 0 rgba(31, 38, 135, 0.2); /* Sombra mais destacada */
+    
+    border-radius: 15px;
 }
 
 .history-list {
     display: flex;
     flex-direction: column;
-    gap: 5px; /* Reduzido */
-    max-height: 100%; /* Ajusta para caber no container */
-    overflow-y: auto; /* Mantém a rolagem interna para o histórico */
+    gap: 5px; /* Reduz o espaçamento da lista */
+    /* Remove max-height e overflow-y para tirar o scroll interno */
+    max-height: none;
+    overflow-y: hidden;
 }
 
 .history-item {
     display: flex;
     align-items: center;
-    gap: 5px; /* Reduzido */
-    padding: 5px; /* Reduzido */
-    background: linear-gradient(135deg, rgba(46, 204, 113, 0.05), rgba(39, 174, 96, 0.05));
-    border-radius: 8px; /* Reduzido */
-    border-left: 3px solid var(--primary-color); /* Reduzido */
+    gap: 20px; /* Reduz espaçamento */
+    padding: 0px; /* Reduz padding */
+    background: rgba(255, 255, 255, 0.5); /* Fundo semi-transparente para item interno */
+    border-radius: 10px;
+    border-left: 4px solid var(--primary-color);
     transition: var(--transition);
 }
 
@@ -353,6 +370,7 @@ body {
     font-size: 1rem;
     color: var(--text-dark);
     font-weight: 600;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
 }
 
 .history-date {
@@ -383,17 +401,17 @@ body {
 .footer-actions {
     display: flex;
     justify-content: center;
-    padding: 5px 0; /* Reduzido */
+    padding: 10px 0; /* Reduz padding */
     border-top: 2px solid rgba(46, 204, 113, 0.2);
 }
 
 .back-button {
     background: rgba(46, 204, 113, 0.1);
-    color: var(--primary-color);
+    color: var(--text-dark);
     border: 2px solid var(--primary-color);
-    padding: 8px 20px; /* Reduzido */
-    border-radius: 10px; /* Reduzido */
-    font-size: 0.9rem; /* Reduzido */
+    padding: 10px 30px; /* Reduz padding */
+    border-radius: 15px;
+    font-size: 1rem; /* Reduz tamanho da fonte */
     font-weight: 600;
     text-decoration: none;
     transition: var(--transition);
@@ -403,7 +421,7 @@ body {
 
 .back-button:hover {
     background: var(--primary-color);
-    color: white;
+    color: rgb(17, 61, 0);
     transform: translateY(-3px);
     box-shadow: 0 8px 20px rgba(46, 204, 113, 0.3);
 }
@@ -416,23 +434,6 @@ body {
    SCROLLBAR CUSTOMIZADO
    =================================== */
 
-.history-list::-webkit-scrollbar {
-    width: 6px;
-}
-
-.history-list::-webkit-scrollbar-track {
-    background: rgba(46, 204, 113, 0.1);
-    border-radius: 10px;
-}
-
-.history-list::-webkit-scrollbar-thumb {
-    background: var(--primary-color);
-    border-radius: 10px;
-}
-
-.history-list::-webkit-scrollbar-thumb:hover {
-    background: var(--secondary-color);
-}
 
 /* ===================================
    RESPONSIVE DESIGN
@@ -440,10 +441,8 @@ body {
 
 @media (max-width: 768px) {
     .totem-container {
-        height: calc(100vh - 20px); /* Garante que o container ocupe a altura restante */
-        overflow-y: hidden; /* Remove a rolagem do container */
-        padding: 10px 10px; /* Reduzido */
-        gap: 5px; /* Reduzido */
+        padding: 30px 20px;
+        gap: 25px;
         max-width: 100%;
     }
 
@@ -461,7 +460,7 @@ body {
     }
 
     .profile-section {
-        padding: 10px;
+        padding: 20px;
     }
 
     .section-title {
@@ -495,10 +494,8 @@ body {
 
 @media (max-width: 480px) {
     .totem-container {
-        height: calc(100vh - 20px); /* Garante que o container ocupe a altura restante */
-        overflow-y: hidden; /* Remove a rolagem do container */
-        padding: 5px 5px; /* Reduzido */
-        gap: 5px; /* Reduzido */
+        padding: 20px 15px;
+        gap: 20px;
     }
 
     .totem-logo {

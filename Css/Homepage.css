@@ -23,12 +23,14 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: linear-gradient(135deg, #60875f 0%, #c2d8c2 100%);
-    min-height: 100vh;
+    /* Otimização para 4:3 e sem scroll */
+    height: 100vh; /* Usa 100% da altura da viewport */
+    width: 100vw; /* Usa 100% da largura da viewport */
+    overflow: hidden; /* Remove a rolagem */
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 10px;
-    overflow: hidden; /* Remove o scroll do body */
+    padding: 0; /* Remove padding do body para maximizar o espaço */
 }
 
 /* ===================================
@@ -36,19 +38,19 @@ body {
    =================================== */
 
 .totem-container {
-    width: 100%;
-    max-width: 900px;
+    width: 90vh;
+    max-width: 100%; /* Limite máximo de largura */
+    height: 100vh; /* Ocupa toda a altura disponível */
+    
     background: rgba(255, 255, 255, 0.50);
     border-radius: var(--border-radius);
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-    padding: 15px 30px; /* Reduzido de 40px 30px */
+    padding: 50px; /* Reduz padding para economizar espaço */
     display: flex;
     flex-direction: column;
-    gap: 10px; /* Reduzido de 30px */
+    gap: 15px; /* Reduz o espaçamento entre os elementos */
     backdrop-filter: blur(10px);
     border: 2px solid rgba(255, 255, 255, 0.3);
-    height: calc(100vh - 20px); /* Garante que o container ocupe a altura restante */
-    overflow-y: hidden; /* Remove a rolagem do container */
 }
 
 /* ===================================
@@ -57,17 +59,17 @@ body {
 
 .totem-header {
     text-align: center;
-    padding: 5px 0; /* Reduzido de 20px 0 */
+    padding: 10px 0; /* Reduz padding */
     border-bottom: 3px solid var(--primary-color);
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 5px; /* Reduzido de 15px */
+    gap: 5px; /* Reduz espaçamento */
 }
 
 .totem-logo {
-    width: 70px; /* Reduzido de 105px */
-    height: 70px; /* Reduzido de 105px */
+    width: 80px; /* Reduz o tamanho do logo */
+    height: 80px;
     filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
 }
 
@@ -89,8 +91,8 @@ body {
 .points-banner {
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     color: white;
-    padding: 10px 20px; /* Reduzido */
-    border-radius: 10px; /* Reduzido */
+    padding: 15px 20px; /* Reduz padding */
+    border-radius: 15px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -110,7 +112,7 @@ body {
 }
 
 .points-value {
-    font-size: 1.3rem; /* Reduzido */
+    font-size: 1.5rem; /* Reduz o tamanho da fonte */
     font-weight: 900;
     letter-spacing: 1px;
 }
@@ -138,12 +140,12 @@ body {
    =================================== */
 
 .page-title {
-    font-size: 1.5rem; /* Reduzido */
+    font-size: 1.5rem; /* Reduz o tamanho da fonte */
     font-weight: 700;
     text-align: center;
     color: var(--text-dark);
     letter-spacing: 1px;
-    margin: 5px 0; /* Reduzido */
+    margin: 5px 0; /* Reduz margem */
 }
 
 /* ===================================
@@ -152,35 +154,40 @@ body {
 
 .nav-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Reduzido */
-    gap: 10px; /* Reduzido */
-    padding: 5px 0; /* Reduzido */
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Reduz minmax */
+    gap: 15px; /* Reduz o espaçamento do grid */
+    padding: 10px 0; /* Reduz padding */
     flex: 1;
 }
 
 .nav-card {
-    background: white;
-    border: 2px solid rgba(46, 204, 113, 0.2);
-    border-radius: 15px; /* Reduzido */
-    padding: 20px 15px; /* Reduzido */
+    /* Glassmorphism moderado */
+    background: rgba(255, 255, 255, 0.2); /* Fundo branco semi-transparente */
+    backdrop-filter: blur(8px); /* Efeito de desfoque de vidro */
+    border: 1px solid rgba(255, 255, 255, 0.4); /* Borda mais suave */
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37); /* Sombra mais destacada */
+    
+    border-radius: 20px;
+    border-radius: 20px;
+    padding: 20px 15px; /* Reduz padding */
     text-decoration: none;
     color: var(--text-dark);
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px; /* Reduzido */
+    gap: 10px; /* Reduz espaçamento interno */
     transition: var(--transition);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
     cursor: pointer;
-    min-height: 150px; /* Reduzido */
+    min-height: auto;
     justify-content: center;
 }
 
 .nav-card:hover {
-    background: linear-gradient(135deg, rgba(46, 204, 113, 0.05), rgba(39, 174, 96, 0.05));
-    border-color: var(--primary-color);
+    /* Efeito de hover aprimorado para glassmorphism */
+    background: rgba(255, 255, 255, 0.35); /* Mais opaco no hover */
+    border-color: rgba(255, 255, 255, 0.7); /* Borda mais clara no hover */
     transform: translateY(-8px);
-    box-shadow: 0 12px 30px rgba(46, 204, 113, 0.2);
+    box-shadow: 0 16px 40px 0 rgba(31, 38, 135, 0.5); /* Sombra mais forte no hover */
 }
 
 .nav-card:active {
@@ -188,7 +195,7 @@ body {
 }
 
 .nav-icon {
-    font-size: 2.5rem; /* Reduzido */
+    font-size: 3rem; /* Reduz o tamanho do ícone */
     display: block;
     filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
     transition: var(--transition);
@@ -199,11 +206,13 @@ body {
 }
 
 .nav-text {
-    font-size: 1rem; /* Reduzido */
+    font-size: 1.1rem;
     font-weight: 700;
     text-align: center;
+    /* Sombra de texto para legibilidade em glassmorphism */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
     letter-spacing: 0.5px;
-    line-height: 1.2; /* Reduzido */
+    line-height: 1.3;
 }
 
 /* ===================================
@@ -213,17 +222,17 @@ body {
 .footer-actions {
     display: flex;
     justify-content: center;
-    padding: 5px 0; /* Reduzido */
+    padding: 10px 0; /* Reduz padding */
     border-top: 2px solid rgba(46, 204, 113, 0.2);
 }
 
 .back-button {
     background: rgba(46, 204, 113, 0.1);
-    color: var(--primary-color);
+    color: var(--text-dark);
     border: 2px solid var(--primary-color);
-    padding: 8px 20px; /* Reduzido */
-    border-radius: 10px; /* Reduzido */
-    font-size: 0.9rem; /* Reduzido */
+    padding: 10px 30px; /* Reduz padding */
+    border-radius: 15px;
+    font-size: 1rem; /* Reduz tamanho da fonte */
     font-weight: 600;
     text-decoration: none;
     transition: var(--transition);
@@ -248,10 +257,8 @@ body {
 
 @media (max-width: 768px) {
     .totem-container {
-        height: calc(100vh - 20px); /* Garante que o container ocupe a altura restante */
-        overflow-y: hidden; /* Remove a rolagem do container */
-        padding: 10px 10px; /* Reduzido */
-        gap: 5px; /* Reduzido */
+        padding: 30px 20px;
+        gap: 25px;
         max-width: 100%;
     }
 
@@ -298,10 +305,8 @@ body {
 
 @media (max-width: 480px) {
     .totem-container {
-        height: calc(100vh - 20px); /* Garante que o container ocupe a altura restante */
-        overflow-y: hidden; /* Remove a rolagem do container */
-        padding: 5px 5px; /* Reduzido */
-        gap: 5px; /* Reduzido */
+        padding: 20px 15px;
+        gap: 20px;
     }
 
     .totem-logo {
