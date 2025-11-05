@@ -1,0 +1,313 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(284deg, #60875f 0%, #c2d8c2 100%); 
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px; 
+    position: relative; 
+}
+
+/* AJUSTE: Adicionado margin-top para dar espaço ao header flutuante */
+.profile-card {
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: 30px;
+    padding: 30px 40px; 
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); 
+    backdrop-filter: blur(15px); 
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #333; 
+    margin-top: 50px; /* Dá espaço para o logo e os pontos */
+    position: relative;
+}
+
+/* --- ADICIONADO (do CSS do seu amigo) --- */
+/* Regra para alinhar o logo (legend) */
+.profile-card legend {
+    width: 100%; 
+    text-align: left; 
+}
+
+.profile-card legend img {
+    /* Estilo que estava inline no seu HTML */
+    width: 25%; 
+    height: auto;
+    
+    /* Posicionamento (do CSS do seu amigo) */
+    margin-left: -25px; 
+    display: block;
+}
+
+/* --- ADICIONADO (do CSS do seu amigo) --- */
+/* Estilo do cabeçalho superior (para os pontos) */
+.top-header-info {
+    display: flex;
+    justify-content: space-between; /* Joga o .header-title-section (vazio) para a esquerda e os pontos para a direita */
+    align-items: center;
+    width: 100%;
+    position: absolute;
+    top: 29px;
+    left: 0;
+    padding: 0 50px; 
+    transform: translateY(-50%); 
+    z-index: 10;
+}
+
+/* --- ADICIONADO (do CSS do seu amigo) --- */
+/* Estilo para a div vazia à esquerda (necessária para o space-between) */
+.header-title-section {
+    padding: 0;
+    border-radius: 0;
+    backdrop-filter: none;
+    border: none;
+}
+
+
+/* --- BLOCO SUBSTITUÍDO (pelo CSS do seu amigo) --- */
+/* Estilo dos Pontos (agora com "vidro" e texto claro) */
+.points-indicator-top {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.1); 
+    padding: 10px 20px;
+    border-radius: 15px;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    
+    position: static; 
+    bottom: auto;
+    right: auto;
+}
+
+.points-label {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.7); /* Texto claro */
+}
+
+.points-value {
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff; /* Texto claro */
+}
+
+.info-icon {
+    width: 18px;
+    height: 18px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    color: #fff; /* Texto claro */
+    cursor: pointer;
+}
+/* --- FIM DO BLOCO SUBSTITUÍDO --- */
+
+
+/* Título principal (o seu já estava correto, texto escuro e sem borda) */
+.main-title-card {
+    font-size: 24px; 
+    font-weight: 600;
+    color: #333;
+    text-align: center; 
+    margin-bottom: 25px; 
+}
+
+
+/* --- ESTILOS DAS ABAS DE NAVEGAÇÃO (seus, já corretos) --- */
+.rewards-nav {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.rewards-nav ul {
+    display: flex;
+    list-style: none;
+    gap: 40px;
+}
+
+.rewards-nav li {
+    padding: 0 10px;
+}
+
+.rewards-nav a {
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    color: #555;
+    padding-bottom: 15px;
+    display: block;
+    border-bottom: 3px solid transparent;
+    position: relative;
+    top: 2px;
+}
+
+.rewards-nav a:hover {
+    color: #111;
+}
+
+.rewards-nav a.active {
+    color: #3a5a3a;
+    font-weight: 600;
+    border-bottom-color: #3a5a3a;
+}
+
+
+/* --- ESTILOS DO GRID DE RECOMPENSAS (seus, já corretos) --- */
+.rewards-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.reward-item {
+    background: rgba(255, 255, 255, 0.4); 
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 15px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 160px;
+    gap: 8px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+}
+
+.reward-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.reward-icon {
+    font-size: 40px;
+    margin-bottom: 5px; 
+    line-height: 1;
+}
+
+.reward-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    flex-grow: 1; 
+}
+
+.reward-points {
+    font-size: 15px;
+    font-weight: 700;
+    color: #d9534f;
+}
+
+
+/* --- ESTILOS RESPONSIVOS --- */
+
+@media (max-width: 850px) {
+    .container {
+        max-width: 600px;
+    }
+    
+    .rewards-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .rewards-nav ul {
+        gap: 20px;
+    }
+
+    .rewards-nav a {
+        font-size: 14px;
+    }
+}
+
+
+/* AJUSTE: O seu @media (max-width: 768px) foi copiado do seu amigo, 
+   o que é correto para este layout.
+*/
+@media (max-width: 768px) {
+    .profile-card {
+        padding: 30px;
+        margin-top: 70px; 
+    }
+
+    .top-header-info {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 0 30px;
+        transform: none; 
+        top: -30px; 
+        gap: 10px;
+    }
+    
+    .header-title-section {
+        margin-bottom: 5px;
+    }
+
+    /* O seu bloco @media (max-width: 600px) foi removido 
+       pois o @media (max-width: 768px) já faz o trabalho. */
+    
+    .points-indicator-top {
+        position: static;
+        width: 100%;
+        justify-content: center;
+        margin-top: 10px;
+    }
+
+    .main-title-card {
+        font-size: 20px;
+    }
+
+    .rewards-nav {
+        margin-bottom: 20px;
+    }
+
+    .rewards-nav ul {
+        gap: 5px;
+        width: 100%;
+        justify-content: space-around;
+    }
+    
+    .rewards-nav a {
+        font-size: 13px;
+        padding-bottom: 10px;
+    }
+
+    .rewards-nav li {
+        padding: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .profile-card {
+        padding: 20px;
+    }
+    
+    .rewards-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .reward-item {
+        min-height: auto;
+        padding: 15px;
+    }
+}
