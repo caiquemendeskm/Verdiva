@@ -1,0 +1,208 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(284deg, #60875f 0%, #c2d8c2 100%); 
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px; 
+    position: relative; 
+}
+
+.profile-card {
+    background: rgba(255, 255, 255, 0.15); 
+    border-radius: 30px;
+    padding: 30px 40px; 
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); 
+    backdrop-filter: blur(15px); 
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #fff; 
+    
+    
+    margin-top: 50px; 
+}
+
+
+.main-title-card {
+    font-size: 24px; 
+    font-weight: 600;
+    color: #fff;
+    text-align: center; 
+    margin-bottom: 30px; 
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2); 
+    padding-bottom: 15px; 
+
+}
+
+.card-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+}
+
+.left-section {
+    display: flex;
+    flex-direction: column; 
+    gap: 15px; 
+}
+
+.left-section h2,
+.right-section h2 {
+    font-size: 18px;
+    color: #fff;
+    margin-bottom: 0; 
+    font-weight: 500;
+}
+
+.items-list-box {
+    background: rgba(255, 255, 255, 0.4); 
+    border-radius: 15px;
+    padding: 10px 15px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.items-list-box ul {
+    list-style: none;
+}
+
+.items-list-box li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 5px;
+    font-size: 14px;
+    color: #333; 
+    font-weight: 500;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.items-list-box li:last-child {
+    border-bottom: none;
+}
+
+.item-icon { font-size: 18px; }
+.item-name { flex-grow: 1; } 
+.item-points { 
+    font-weight: 600; 
+    color: #111;
+}
+.item-check { 
+    font-size: 18px; 
+    color: #4CAF50; 
+}
+
+
+.right-section {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.points-section {
+    width: 100%; 
+}
+
+.points-section h2 {
+    text-align: center;
+}
+
+.points-display {
+    display: flex;
+    align-items: baseline;
+    justify-content: center; 
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.points-number {
+    font-size: 80px; 
+    font-weight: 700;
+    color: #fff;
+    line-height: 1;
+}
+
+.points-unit {
+    font-size: 28px; 
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 600;
+}
+
+.points-note {
+    font-size: 14px; 
+    color: rgba(255, 255, 255, 0.8); 
+    margin-top: 5px; 
+}
+
+
+/* --- NOVOS ESTILOS PARA O BOTÃO FINALIZAR --- */
+.card-footer {
+    margin-top: 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    padding-top: 25px;
+}
+
+.card-footer button {
+    width: 100%;
+    padding: 15px;
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
+    background-color: #8fae90; 
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.card-footer button:hover {
+    background-color: #7a9e7b; 
+}
+
+
+@media (max-width: 768px) {
+    .profile-card {
+        padding: 20px;
+        margin-top: 50px; 
+    }
+
+    .header-logo {
+        left: 20px;
+    }
+
+    .main-title-card {
+        font-size: 20px;
+    }
+
+    .card-content {
+        grid-template-columns: 1fr; 
+        gap: 30px;
+    }
+    
+    .right-section {
+        grid-row: 2; 
+    }
+
+    .points-number {
+        font-size: 60px; 
+    }
+
+    .points-unit {
+        font-size: 20px;
+    }
+}
