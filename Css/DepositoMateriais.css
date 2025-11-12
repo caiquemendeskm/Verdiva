@@ -4,47 +4,190 @@
     box-sizing: border-box;
 }
 
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(284deg, #60875f 0%, #c2d8c2 100%); 
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-}
-
-.container {
-    width: 100%;
-    max-width: 1200px; 
-    position: relative; 
-}
+:root {
+	    --primary-color: #2ecc71;
+	    --secondary-color: #27ae60;
+	    --accent-color: #3498db;
+	    --dark-bg: #1a1a1a;
+	    --light-bg: #f8f9fa;
+	    --text-dark: #2c3e50;
+	    --text-light: #ecf0f1;
+	    --border-radius: 20px;
+	    --transition: all 0.3s ease;
+	}
+	
+	body {
+	    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	    background: linear-gradient(135deg, #60875f 0%, #c2d8c2 100%);
+	    height: 100vh;
+	    width: 100vw;
+	    overflow: hidden;
+	    display: flex;
+	    justify-content: center;
+	    align-items: center;
+	    padding: 0;
+	}
+	
+	.totem-container {
+	    width: 90vh;
+	    max-width: 100%;
+	    height: 100vh;
+	    
+	    background: rgba(255, 255, 255, 0.50);
+	    border-radius: var(--border-radius);
+	    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+	    padding: 50px;
+	    display: flex;
+	    flex-direction: column;
+	    gap: 15px;
+	    backdrop-filter: blur(10px);
+	    border: 2px solid rgba(255, 255, 255, 0.3);
+	}
+	
+	.totem-header {
+	    text-align: center;
+	    padding: 10px 0;
+	    border-bottom: 3px solid var(--primary-color);
+	    display: flex;
+	    flex-direction: column;
+	    align-items: center;
+	    gap: 5px;
+	}
+	
+	.totem-logo {
+	    width: 80px;
+	    height: 80px;
+	    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+	}
+	
+	.points-banner {
+	    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+	    color: white;
+	    padding: 15px 20px;
+	    border-radius: 15px;
+	    display: flex;
+	    justify-content: space-between;
+	    align-items: center;
+	    box-shadow: 0 8px 20px rgba(46, 204, 113, 0.3);
+	}
+	
+	.points-info {
+	    display: flex;
+	    align-items: center;
+	    gap: 15px;
+	}
+	
+	.points-label {
+	    font-size: 1rem;
+	    opacity: 0.9;
+	    font-weight: 500;
+	}
+	
+	.points-value {
+	    font-size: 1.5rem;
+	    font-weight: 900;
+	    letter-spacing: 1px;
+	}
+	
+	.points-icon {
+	    width: 40px;
+	    height: 40px;
+	    background: rgba(255, 255, 255, 0.2);
+	    border-radius: 50%;
+	    display: flex;
+	    align-items: center;
+	    justify-content: center;
+	    font-size: 1.2rem;
+	    cursor: pointer;
+	    transition: var(--transition);
+	}
+	
+	.page-title {
+	    font-size: 1.5rem;
+	    font-weight: 700;
+	    text-align: center;
+	    color: var(--text-dark);
+	    letter-spacing: 1px;
+	    margin: 5px 0;
+	}
+	
+	.footer-actions {
+	    /* Ocultado, pois o botão foi movido */
+	    display: none;
+	}
+	
+	.back-button {
+	    background: rgba(46, 204, 113, 0.1);
+	    color: var(--text-dark);
+	    border: 2px solid var(--primary-color);
+	    padding: 10px 30px;
+	    border-radius: 15px;
+	    font-size: 1rem;
+	    font-weight: 600;
+	    text-decoration: none;
+	    transition: var(--transition);
+	    cursor: pointer;
+	    letter-spacing: 0.5px;
+	}
+	
+	.back-button:hover {
+	    background: var(--primary-color);
+	    color: white;
+	    transform: translateY(-3px);
+	    box-shadow: 0 8px 20px rgba(46, 204, 113, 0.3);
+	}
+	
+	.back-button:active {
+	    transform: translateY(-1px);
+	}
+	
+	.main-content-wrapper {
+	    flex: 1;
+	    display: flex;
+	    flex-direction: column;
+	    justify-content: center;
+	    align-items: center;
+	    padding: 10px 0;
+	}
+	
+	/* ANIMAÇÃO DE TRANSIÇÃO DE PÁGINA (FADE) */
+	body {
+	    opacity: 0;
+	    transition: opacity 0.5s ease-in-out;
+	}
+	
+	body.fade-in {
+	    opacity: 1;
+	}
+	
+	body.fade-out {
+	    opacity: 0;
+	}
+	
+	/* Estilos originais ajustados para o novo layout */
 
 .profile-card {
-    background: rgba(255, 255, 255, 0.15); 
-    border-radius: 30px;
-    padding: 30px 40px; 
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); 
-    backdrop-filter: blur(15px); 
-    -webkit-backdrop-filter: blur(15px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    color: #fff; 
-    
-    
-    margin-top: 50px; 
-}
+	    /* Ajuste para o novo layout */
+	    width: 100%;
+	    max-width: 800px;
+	    background: rgba(255, 255, 255, 0.2); /* Fundo branco semi-transparente */
+	    backdrop-filter: blur(8px); /* Efeito de desfoque de vidro */
+	    border: 1px solid rgba(255, 255, 255, 0.4); /* Borda mais suave */
+	    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37); /* Sombra mais destacada */
+	    border-radius: 20px;
+	    padding: 20px;
+	    color: var(--text-dark); /* Cor do texto ajustada */
+	    margin: 0; /* Remove margem */
+	    flex: 1;
+	    display: flex;
+	    flex-direction: column;
+	}
 
 
 .main-title-card {
-    font-size: 24px; 
-    font-weight: 600;
-    color: #fff;
-    text-align: center; 
-    margin-bottom: 30px; 
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2); 
-    padding-bottom: 15px; 
-
-}
+	    /* Removido, pois o título principal agora é .page-title */
+	    display: none;
+	}
 
 .card-content {
     display: grid;
@@ -59,34 +202,38 @@ body {
 }
 
 .left-section h2,
-.right-section h2 {
-    font-size: 18px;
-    color: #fff;
-    margin-bottom: 0; 
-    font-weight: 500;
-}
+	.right-section h2 {
+	    font-size: 1.2rem;
+	    color: var(--text-dark); /* Cor do texto ajustada */
+	    margin-bottom: 0; 
+	    font-weight: 600;
+	    border-bottom: 2px solid var(--primary-color);
+	    padding-bottom: 5px;
+	}
 
 .items-list-box {
-    background: rgba(255, 255, 255, 0.4); 
-    border-radius: 15px;
-    padding: 10px 15px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-}
+	    background: rgba(255, 255, 255, 0.5); 
+	    border-radius: 15px;
+	    padding: 10px 15px;
+	    border: 1px solid rgba(255, 255, 255, 0.5);
+	    flex: 1;
+	    overflow-y: auto;
+	}
 
 .items-list-box ul {
     list-style: none;
 }
 
 .items-list-box li {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 12px 5px;
-    font-size: 14px;
-    color: #333; 
-    font-weight: 500;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-}
+	    display: flex;
+	    align-items: center;
+	    gap: 10px;
+	    padding: 12px 5px;
+	    font-size: 1rem;
+	    color: var(--text-dark); 
+	    font-weight: 500;
+	    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+	}
 
 .items-list-box li:last-child {
     border-bottom: none;
@@ -95,9 +242,9 @@ body {
 .item-icon { font-size: 18px; }
 .item-name { flex-grow: 1; } 
 .item-points { 
-    font-weight: 600; 
-    color: #111;
-}
+	    font-weight: 700; 
+	    color: var(--primary-color);
+	}
 .item-check { 
     font-size: 18px; 
     color: #4CAF50; 
@@ -130,23 +277,23 @@ body {
 }
 
 .points-number {
-    font-size: 80px; 
-    font-weight: 700;
-    color: #fff;
-    line-height: 1;
-}
-
-.points-unit {
-    font-size: 28px; 
-    color: rgba(255, 255, 255, 0.8);
-    font-weight: 600;
-}
-
-.points-note {
-    font-size: 14px; 
-    color: rgba(255, 255, 255, 0.8); 
-    margin-top: 5px; 
-}
+	    font-size: 4rem; 
+	    font-weight: 800;
+	    color: var(--primary-color);
+	    line-height: 1;
+	}
+	
+	.points-unit {
+	    font-size: 1.5rem; 
+	    color: var(--text-dark);
+	    font-weight: 600;
+	}
+	
+	.points-note {
+	    font-size: 0.9rem; 
+	    color: var(--text-dark); 
+	    margin-top: 5px; 
+	}
 
 
 /* --- NOVOS ESTILOS PARA O BOTÃO FINALIZAR --- */
@@ -157,52 +304,107 @@ body {
 }
 
 .card-footer button {
-    width: 100%;
-    padding: 15px;
-    font-size: 16px;
-    font-weight: 600;
-    color: white;
-    background-color: #8fae90; 
-    border: none;
-    border-radius: 12px;
-    cursor: pointer;
-    transition: background-color 0.2s;
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-}
-
-.card-footer button:hover {
-    background-color: #7a9e7b; 
-}
+	    width: 100%;
+	    padding: 15px;
+	    font-size: 1rem;
+	    font-weight: 700;
+	    color: white;
+	    background-color: var(--primary-color); 
+	    border: none;
+	    border-radius: 15px;
+	    cursor: pointer;
+	    transition: var(--transition);
+	    box-shadow: 0 4px 10px rgba(46, 204, 113, 0.4);
+	}
+	
+	.card-footer button:hover {
+	    background-color: var(--secondary-color); 
+	    transform: translateY(-2px);
+	    box-shadow: 0 6px 15px rgba(46, 204, 113, 0.6);
+	}
+	
+	.card-footer button:active {
+	    transform: translateY(0);
+	}
+	
+	.card-back-button {
+	    margin-top: 15px;
+	    text-align: center;
+	}
+	
+	.card-back-button .back-button {
+		/* Reutiliza o estilo do back-button, mas ajusta o fundo para ser mais discreto */
+		background: rgba(46, 204, 113, 0.1);
+    	color: var(--text-dark);
+    	border: 2px solid var(--primary-color);
+	    padding: 5px 10px;
+	    font-size: 0.9rem;
+	    font-weight: 500;
+	    opacity: 0.7;
+	}
+	
+	.card-back-button .back-button:hover {
+	    background: var(--primary-color);
+	    color: white;
+	    transform: translateY(-3px);
+	    box-shadow: 0 8px 20px rgba(46, 204, 113, 0.3);
+	}
 
 
 @media (max-width: 768px) {
-    .profile-card {
-        padding: 20px;
-        margin-top: 50px; 
-    }
-
-    .header-logo {
-        left: 20px;
-    }
-
-    .main-title-card {
-        font-size: 20px;
-    }
-
-    .card-content {
-        grid-template-columns: 1fr; 
-        gap: 30px;
-    }
-    
-    .right-section {
-        grid-row: 2; 
-    }
-
-    .points-number {
-        font-size: 60px; 
-    }
-
-    .points-unit {
-        font-size: 20px;
-    }
-}
+	    .totem-container {
+	        padding: 30px 20px;
+	        gap: 25px;
+	    }
+	
+	    .page-title {
+	        font-size: 1.6rem;
+	    }
+	
+	    .card-content {
+	        grid-template-columns: 1fr; 
+	        gap: 30px;
+	    }
+	    
+	    .right-section {
+	        grid-row: 2; 
+	    }
+	
+	    .points-number {
+	        font-size: 3rem; 
+	    }
+	
+	    .points-unit {
+	        font-size: 1.2rem;
+	    }
+	}
+	
+	@media (max-width: 480px) {
+	    .totem-container {
+	        padding: 20px 15px;
+	        gap: 20px;
+	    }
+	
+	    .points-banner {
+	        padding: 12px 15px;
+	        flex-direction: column;
+	        gap: 10px;
+	    }
+	
+	    .points-info {
+	        width: 100%;
+	        justify-content: space-between;
+	    }
+	
+	    .page-title {
+	        font-size: 1.4rem;
+	    }
+	
+	    .points-number {
+	        font-size: 2.5rem; 
+	    }
+	
+	    .points-unit {
+	        font-size: 1rem;
+	    }
+	}

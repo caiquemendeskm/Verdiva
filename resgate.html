@@ -4,27 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Verdiva - Resgatar Recompensas</title>
-    <link rel="stylesheet" href="resgate.css"> 
+    <link rel="stylesheet" href="Css/resgate.css"> 
 </head>
 <body>
-    <div class="container">
-        <div class="top-header-info">
-            <div class="header-title-section">
-                </div>
-            
-            <div class="points-indicator-top">
-                <span class="points-label">Your Points:</span>
-                <span class="points-value">1150 pts</span>
-                <span class="info-icon">ⓘ</span>
-            </div>
-        </div>
-        
-        <fieldset class="profile-card">
-            <legend>
-                <img src="icone.png" alt="Verdiva logo">
-            </legend>
-
-            <h1 class="main-title-card">Resgatar Recompensas</h1>
+    <div class="totem-container">
+<!-- Header do Totem -->
+	        <div class="totem-header">
+	            <img src="Imagens/icone.png" alt="Verdiva logo" class="totem-logo">
+	        </div>
+	
+	        <!-- Indicador de Pontos -->
+	        <div class="points-banner">
+	            <div class="points-info">
+	                <span class="points-label">Seus Pontos:</span>
+	                <span class="points-value">1150 pts</span>
+	            </div>
+	            <div class="points-icon">ⓘ</div>
+	        </div>
+	
+	        <!-- Título da Página -->
+	        <h2 class="page-title">RESGATAR RECOMPENSAS</h2>
+	
+	        <!-- Conteúdo Principal -->
+	        <div class="main-content-wrapper">
+	            <fieldset class="profile-card">
 
             <nav class="rewards-nav">
                 <ul>
@@ -79,5 +82,36 @@
                     <span class="reward-points">-300 pts</span>
                 </div>
 
-            </div> </fieldset> </div> </body>
+            </div>
+	            </fieldset>
+	        </div>
+	
+	        <!-- Botão de Voltar e Script de Transição -->
+	        <div class="footer-actions">
+	            <a href="Homepage.html" class="back-button">← VOLTAR</a>
+	        </div>
+	    </div>
+	    <script>
+	        document.addEventListener('DOMContentLoaded', () => {
+	            document.body.classList.add('fade-in');
+	            document.querySelectorAll('a[href$=".html"]').forEach(link => {
+	                link.addEventListener('click', (e) => {
+	                    const targetUrl = link.getAttribute('href');
+	                    if (targetUrl && targetUrl.endsWith('.html')) {
+	                        e.preventDefault();
+	                        handleTransition(targetUrl);
+	                    }
+	                });
+	            });
+	
+	            function handleTransition(url) {
+	                document.body.classList.remove('fade-in');
+	                document.body.classList.add('fade-out');
+	                setTimeout(() => {
+	                    window.location.href = url;
+	                }, 500);
+	            }
+	        });
+	    </script>
+	</body>
 </html>
