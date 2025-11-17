@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Verdiva</title>
+</head>
+<body>
+
+  <h2>Login</h2>
+
+  <form id="loginForm">
+    <label for="email">E-mail</label>
+    <input type="email" id="email" placeholder="exemplo@email.com" required>
+
+    <label for="senha">Senha</label>
+    <input type="password" id="senha" required>
+
+    <button type="submit">Entrar</button>
+  </form>
+
+  <div id="mensagem"></div>
+
+  <script>
+    const API_URL = 'http://localhost/VerdivaTeste/v1/servico-de-usuarios';
+
+    document.getElementById('loginForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      const email = document.getElementById('email').value.trim();
+      const senha = document.getElementById('senha').value;
+      const mensagem = document.getElementById('mensagem');
+
+      mensagem.textContent = '';
+
+      if (!email || !senha) {
+        mensagem.textContent = 'Preencha todos os campos.';
+        return;
+      }
+
+      try {
+        // Busca usuário pelo e-mail
+        const response = await fetch(`${API_URL}?email=${encodeURIComponent(email)}`, {
+          method: 'GET',
+          headers: { 'Content-Type': 'application/json' }
+        });
+
+        const result = await response.json();
+
+        if (!result.success || result.usuarios.length === 0) {
+          mensagem.textContent = 'E-mail não encontrado.';
+          return;
+        }
+
+        const usuario = result.usuarios[0];
+
+        // Verifica senha
+        const senhaValida = await verifyPassword(senha, usuario.senha);
+        if (!senhaValida) {
+          mensagem.textContent = 'Senha incorreta.';
+          return;
+        }
+
+        // Login bem-sucedido
+        mensagem.textContent = 'Login realizado com sucesso!';
+        mensagem.style.color = 'green';
+
+        // Armazena dados do usuário (opcional)
+        localStorage.setItem('usuarioLogado', JSON.stringify({
+          id: usuario.id,
+          email: usuario.email,
+          cpf: usuario.cpf,
+          telefone: usuario.telefone
+        }));
+
+        // Redireciona (exemplo)
+        setTimeout(() => {
+          window.location.href = 'Homepage.html'; 
+        }, 1000);
+
+      } catch (err) {
+        console.error(err);
+        mensagem.textContent = 'Erro ao conectar com o servidor.';
+      }
+    });
+
+    async function verifyPassword(inputPassword, hashedPassword) {
+      // Simulação local: envia para um endpoint PHP que verifica
+      const res = await fetch('http://localhost/VerdivaTeste/verify-password.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ senha: inputPassword, hash: hashedPassword })
+      });
+      const data = await res.json();
+      return data.valid;
+    }
+  </script>
+
+</body>
+</html>

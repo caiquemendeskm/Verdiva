@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redefinir Senha</title>
+    <!-- EmailJS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+</head>
+
+<body>
+
+    <h2>Redefinir Senha</h2>
+
+    <!-- Etapa 1: E-mail -->
+    <div id="etapa1">
+        <form id="formEmail">
+            <label>E-mail</label>
+            <input type="email" id="email" placeholder="exemplo@email.com" required>
+            <button type="submit">Enviar Código</button>
+        </form>
+        <div id="msgEmail"></div>
+    </div>
+
+    <!-- Etapa 2: Código + Nova Senha -->
+    <div id="etapa2" style="display: none;">
+        <form id="formCodigo">
+            <label>Código de 6 dígitos</label>
+            <input type="text" id="codigo" maxlength="6" required>
+
+            <label>Nova Senha</label>
+            <input type="password" id="nova_senha" required>
+
+            <label>Confirmar Senha</label>
+            <input type="password" id="confirmar_senha" required>
+
+            <button type="submit">Redefinir</button>
+        </form>
+        <div id="msgCodigo"></div>
+    </div>
+
+    <script>
+        const SERVICE_ID = 'service_1wddv1w';
+        const TEMPLATE_ID = 'template_vxctnoc';
+        const PUBLIC_KEY = 'tnutqOLP-Wsnk9AKc';
+
+        emailjs.init(PUBLIC_KEY);
+
+        let emailAtual = '';
+        let codigoGerado = '';
+
+        document.getElementById('formEmail').addEventListener('submit', async function (e) {
+            e.preventDefault();
+            const email = document.getElementById('email').value.trim();
+            const msg = document.getElementById('msgEmail');
+            msg.textContent = '';
+
+            if (!email) return msg.textContent = 'Digite um e-mail';
+
+            try {
+                const res = await fetch(`http://localhost/VerdivaTeste/v1/servico-de-usuarios?email=${encodeURIComponent(email)}`);
+                const data = await res.json();
+                if (!data.success || data.usuarios.length === 0) {
+                    return msg.textContent = 'E-mail não cadastrado';
+                }
+
+                codigoGerado = String(Math.floor(100000 + Math.random() * 900000));
+                emailAtual = email;
+
+                await emailjs.send('service_1wddv1w', 'template_vxctnoc', {
+                    email: email,
+                    codigo: codigoGerado
+                }, 'tnutqOLP-Wsnk9AKc')
+                    .then(() => console.log('ENVIADO!'))
+                    .catch(e => console.log(e));
+
+                document.getElementById('etapa1').style.display = 'none';
+                document.getElementById('etapa2').style.display = 'block';
+                msg.textContent = 'CÓDIGO ENVIADO! Cheque seu e-mail (e spam)';
+            } catch (err) {
+                console.error(err);
+                msg.textContent = 'Erro ao enviar';
+            }
+        });
+
+        // Segunda etapa (igual antes)
+        document.getElementById('formCodigo').addEventListener('submit', async function (e) {
+            e.preventDefault();
+            const codigo = document.getElementById('codigo').value.trim();
+            const nova = document.getElementById('nova_senha').value;
+            const conf = document.getElementById('confirmar_senha').value;
+            const msg = document.getElementById('msgCodigo');
+
+            if (codigo !== codigoGerado) return msg.textContent = 'Código errado';
+            if (nova !== conf) return msg.textContent = 'Senhas diferentes';
+            if (nova.length < 6) return msg.textContent = 'Mínimo 6 caracteres';
+
+            const res = await fetch('http://localhost/VerdivaTeste/atualizar-senha.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email: emailAtual, nova_senha: nova })
+            });
+            const data = await res.json();
+
+            msg.textContent = data.success ? 'Senha alterada com sucesso!' : 'Erro ao salvar';
+            if (data.success) setTimeout(() => location.href = 'login.html', 2000);
+        });
+    </script>
+
+</html>
