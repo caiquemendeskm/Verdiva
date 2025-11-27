@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste - Verdiva</title>
+    <style>
+        body { font-family: Arial; padding: 20px; }
+        .resultado { margin: 10px 0; padding: 10px; border: 1px solid #ccc; }
+        .sucesso { background: #d4edda; }
+        .erro { background: #f8d7da; }
+    </style>
+</head>
+<body>
+    <h1>Teste de Integração Verdiva</h1>
+    <div id="resultados"></div>
+    
+    <script src="js/api-config.js"></script>
+    <script>
+        const resultados = document.getElementById('resultados');
+        
+        async function testarAPI() {
+            // Teste 1: API Online
+            try {
+                const response = await fetch('http://localhost:8080/api/');
+                const data = await response.json();
+                addResultado('✅ API Online', data.status === 'online', data);
+            } catch (error) {
+                addResultado('❌ API Offline', false, error.message);
+            }
+            
+            // Teste 2: Listar Materiais
+            try {
+                const response = await MateriaisService.listar();
+                addResultado('✅ Materiais carregados', response.success, `${response.total} materiais`);
+            } catch (error) {
+                addResultado('❌ Erro ao carregar materiais', false, error.message);
+            }
+            
+            // Teste 3: Verificar AuthManager
+            try {
+                const logado = AuthManager.estaLogado();
+                addResultado('✅ AuthManager funcionando', true, `Logado: ${logado}`);
+            } catch (error) {
+                addResultado('❌ Erro no AuthManager', false, error.message);
+            }
+        }
+        
+        function addResultado(titulo, sucesso, detalhes) {
+            const div = document.createElement('div');
+            div.className = `resultado ${sucesso ? 'sucesso' : 'erro'}`;
+            div.innerHTML = `<strong>${titulo}</strong><br><pre>${JSON.stringify(detalhes, null, 2)}</pre>`;
+            resultados.appendChild(div);
+        }
+        
+        testarAPI();
+    </script>
+</body>
+</html>

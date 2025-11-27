@@ -15,12 +15,11 @@
         </div>
 
         <!-- Indicador de Pontos -->
-        <div class="points-banner">
-            <div class="points-info">
+        <div class="points-info">
                 <span class="points-label">Seus Pontos:</span>
-                <span class="points-value">1150 pts</span>
-            </div>
-            <div class="points-icon">ⓘ</div>
+                <span class="points-value">
+                <span id="pontos-saldo">0</span> pts
+            </span>
         </div>
 
         <!-- Título da Página -->
@@ -39,17 +38,16 @@
 
                     <div class="info-item">
                         <span class="info-icon">👤</span>
-                        <div class="info-content">
-                            <span class="info-label">Nome</span>
-                            <span class="info-value">Maria Silva</span>
-                        </div>
+                    <span class="info-label">Nome</span>
+                    <span class="info-value" id="perfil-nome">Maria Silva</span>
+
                     </div>
 
                     <div class="info-item">
                         <span class="info-icon">✉️</span>
                         <div class="info-content">
                             <span class="info-label">Email</span>
-                            <span class="info-value">maria-silva@email.com</span>
+                            <span class="info-value" id="perfil-email">maria-silva@email.com</span>
                         </div>
                     </div>
 
@@ -57,7 +55,8 @@
                         <span class="info-icon">📍</span>
                         <div class="info-content">
                             <span class="info-label">Localização</span>
-                            <span class="info-value">São Paulo</span>
+                           <span class="info-value" id="perfil-localizacao">São Paulo</span>
+
                         </div>
                     </div>
                 </div>
@@ -82,8 +81,10 @@
                         <div class="history-item">
                             <span class="history-icon">🏦</span>
                             <div class="history-details">
-                                <span class="history-desc">Depósito de Materiais</span>
-                                <span class="history-date">15/05/2024</span>
+                            <div class="history-list" id="historico-lista">
+                             <!-- Itens serão inseridos via JavaScript -->
+                            </div>
+
                             </div>
                             <span class="history-points positive">+30 pts</span>
                         </div>
@@ -119,43 +120,47 @@
             </div>
         </div>
 
-        <!-- Botão de Voltar -->
-        <div class="footer-actions">
-            <a href="Homepage.html" class="back-button">← VOLTAR AO MENU</a>
-        </div>
+     <!-- Botão de Voltar -->
+    <div class="footer-actions">
+        <a href="Homepage.html" class="back-button">← VOLTAR AO MENU</a>
     </div>
+</div>
+
+<!-- SCRIPTS FICAM AQUI, ANTES DO </body> -->
+<script src="js/api-config.js"></script>
+<script src="js/perfil_usuario.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Adiciona a classe fade-in ao carregar a página
+        document.body.classList.add('fade-in');
+
+        // Intercepta cliques em links internos
+        document.querySelectorAll('a[href$=".html"]').forEach(link => {
+            link.addEventListener('click', (e) => {
+                const targetUrl = link.getAttribute('href');
+                // Verifica se é um link interno para .html
+                if (targetUrl && targetUrl.endsWith('.html')) {
+                    e.preventDefault();
+                    handleTransition(targetUrl);
+                }
+            });
+        });
+
+        function handleTransition(url) {
+            // Adiciona a classe fade-out para iniciar a transição
+            document.body.classList.remove('fade-in');
+            document.body.classList.add('fade-out');
+
+            // Espera a transição terminar (500ms) e navega
+            setTimeout(() => {
+                window.location.href = url;
+            }, 500);
+        }
+    });
+</script>
+  <script src="js/auth.js"></script>
+  <script src="js/api-config.js"></script>
+  <script src="js/login.js"></script>
 </body>
 </html>
-
-
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Adiciona a classe fade-in ao carregar a página
-            document.body.classList.add('fade-in');
-
-            // Intercepta cliques em links internos
-            document.querySelectorAll('a[href$=".html"]').forEach(link => {
-                link.addEventListener('click', (e) => {
-                    const targetUrl = link.getAttribute('href');
-                    // Verifica se é um link interno para .html
-                    if (targetUrl && targetUrl.endsWith('.html')) {
-                        e.preventDefault();
-                        handleTransition(targetUrl);
-                    }
-                });
-            });
-
-            function handleTransition(url) {
-                // Adiciona a classe fade-out para iniciar a transição
-                document.body.classList.remove('fade-in');
-                document.body.classList.add('fade-out');
-
-                // Espera a transição terminar (500ms) e navega
-                setTimeout(() => {
-                    window.location.href = url;
-                }, 500);
-            }
-        });
-    </script>
-

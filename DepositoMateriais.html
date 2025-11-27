@@ -3,90 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Verdiva - Depósito de Materiais</title> 
+    <title>Verdiva - Depósito de Materiais</title>
     <link rel="stylesheet" href="Css/DepositoMateriais.css">
 </head>
 <body>
     <div class="totem-container">
-<!-- Header do Totem -->
+
+        <!-- Header do Totem -->
         <div class="totem-header">
             <img src="Imagens/icone.png" alt="Verdiva logo" class="totem-logo">
         </div>
 
-        <!-- Indicador de Pontos (Simulado) -->
+        <!-- Indicador de Pontos do Usuário -->
         <div class="points-banner">
             <div class="points-info">
                 <span class="points-label">Seus Pontos:</span>
-                <span class="points-value">1150 pts</span>
+                <span class="points-value" id="spanSeusPontos">0 pts</span>
             </div>
             <div class="points-icon">ⓘ</div>
         </div>
 
-        <!-- Título da Página -->
         <h2 class="page-title">Depósito de Materiais</h2>
 
-        <!-- Conteúdo Principal -->
         <div class="main-content-wrapper">
             <fieldset class="profile-card">
 <div class="card-content">
-                
-                <div class="left-section">
-                    <h2>Itens Adicionados</h2>
-                    
-                    <div class="items-list-box">
-                        <ul>
-                            <li>
-                                <span class="item-icon">♻️</span>
-                                <span class="item-name">Garrafa PET</span>
-                                <span class="item-points">10 pts</span>
-                                <span class="item-check">✅</span>
-                            </li>
-                            <li>
-                                <span class="item-icon">🍾</span>
-                                <span class="item-name">Lata de Aluminío</span>
-                                <span class="item-points">5 pts</span>
-                                <span class="item-check">✅</span>
-                            </li>
-                            <li>
-                                <span class="item-icon">📦</span>
-                                <span class="item-name">Papelão</span>
-                                <span class="item-points">8 pts</span>
-                                <span class="item-check">✅</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
 
-                <div class="right-section">
-                    <div class="points-section">
-                        <h2>Total de Pontos</h2>
-                        <div class="points-display">
-                            <span class="points-number">23</span>
-                            <span class="points-unit">pts</span>
-                        </div>
-                        <p class="points-note">Continue adicionando items para acumular mais pontos!</p> 
-                    </div>
-                </div>
-</div>
-	
-	            <div class="card-footer">
-	                <button>Finalizar Depósito</button>
-	            </div>
-	
-	            <!-- Botão de Voltar movido para dentro do card -->
-	            <div class="card-back-button">
-	                <a href="Homepage.html" class="back-button">← VOLTAR</a>
-	            </div>
-	
-	        </div>
-	    </fieldset>
-	    </div>
+    <!-- LISTA DE MATERIAIS DISPONÍVEIS -->
+    <div class="materials-list-wrapper">
+        <h2>Materiais Disponíveis</h2>
+        <div id="listaMateriais" class="materiais-lista"></div>
+    </div>
 
-        <!-- Botão de Voltar e Script de Transição -->
-        <div class="footer-actions" style="display: none;">
-            <!-- Conteúdo movido -->
+    <!-- ITENS ADICIONADOS -->
+    <div class="left-section">
+        <h2>Itens Adicionados</h2>
+        <div class="items-list-box">
+            <ul id="itensAdicionados"></ul>
         </div>
     </div>
+
+    <!-- TOTAL DE PONTOS -->
+    <div class="right-section">
+        <div class="points-section">
+            <h2>Total de Pontos</h2>
+            <div class="points-display">
+                <span class="points-number" id="totalPontos">0</span>
+                <span class="points-unit">pts</span>
+            </div>
+            <p class="points-note">Continue adicionando itens para acumular mais pontos!</p>
+        </div>
+    </div>
+
+</div>
+
+                <div class="card-footer">
+                    <button id="btnFinalizarDeposito">Finalizar Depósito</button>
+                </div>
+
+                <div class="card-back-button">
+                    <a href="Homepage.html" class="back-button">← VOLTAR</a>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+
+    <!-- ANIMAÇÃO DE TRANSIÇÃO -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             document.body.classList.add('fade-in');
@@ -99,7 +81,6 @@
                     }
                 });
             });
-
             function handleTransition(url) {
                 document.body.classList.remove('fade-in');
                 document.body.classList.add('fade-out');
@@ -110,4 +91,8 @@
         });
     </script>
 
+    <script src="js/auth.js"></script>
+    <script src="js/api-config.js"></script>
+    <script src="js/deposito.js"></script>
+</body>
 </html>
