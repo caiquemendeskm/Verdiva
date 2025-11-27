@@ -1,5 +1,6 @@
-// api-config.js - Configuração da API
+// api-config.js - Configuração da API e serviços
 
+// 🔹 Configuração base da API
 const API_CONFIG = {
     baseURL: 'http://localhost/VerdivaTeste/api',
     endpoints: {
@@ -10,6 +11,56 @@ const API_CONFIG = {
     }
 };
 
+// 🔹 Classe para gerenciar autenticação (ÚNICA definição de AuthManager)
+class AuthManager {
+    static STORAGE_KEY = 'verdiva_usuario';
+
+    static salvarUsuario(usuario) {
+        localStorage.setItem(this.STORAGE_KEY, JSON.stringify(usuario));
+    }
+
+    static obterUsuario() {
+        const data = localStorage.getItem(this.STORAGE_KEY);
+        if (!data) return null;
+        try {
+            return JSON.parse(data);
+        } catch (e) {
+            console.error('Erro ao parsear usuário do localStorage:', e);
+            return null;
+        }
+    }
+
+    static limparUsuario() {
+        localStorage.removeItem(this.STORAGE_KEY);
+    }
+
+    static estaLogado() {
+        return this.obterUsuario() !== null;
+    }
+
+    static obterUsuarioId() {
+        const usuario = this.obterUsuario();
+        if (!usuario) return null;
+
+        // adapta se backend usar outro nome de campo
+        return usuario.id || usuario.usuario_id || usuario.id_usuario || null;
+    }
+
+    static obterPontosUsuario() {
+        const usuario = this.obterUsuario();
+        return usuario ? (usuario.saldo_pontos || usuario.pontos || 0) : 0;
+    }
+
+    static atualizarPontos(novosPontos) {
+        const usuario = this.obterUsuario();
+        if (usuario) {
+            usuario.saldo_pontos = novosPontos;
+            this.salvarUsuario(usuario);
+        }
+    }
+}
+
+// 🔹 Cliente genérico da API
 class APIClient {
     static async request(endpoint, options = {}) {
         const url = `${API_CONFIG.baseURL}${endpoint}`;
@@ -70,7 +121,8 @@ class APIClient {
     }
 }
 
-// Serviços específicos
+// 🔹 Serviços específicos
+
 class UsuariosService {
     static async cadastrar(dados) {
         return APIClient.post(API_CONFIG.endpoints.usuarios, dados);
@@ -146,7 +198,7 @@ class RecompensasService {
     }
 }
 
-// Função para verificar se o usuário está logado
+// 🔹 Função genérica de autenticação (usada nas páginas)
 function verificarAutenticacao() {
     if (!AuthManager.estaLogado()) {
         window.location.href = 'login.html';
@@ -155,9 +207,8 @@ function verificarAutenticacao() {
     return true;
 }
 
-// Função para exibir mensagens
+// 🔹 Função para exibir mensagens
 function mostrarMensagem(mensagem, tipo = 'info') {
-    // Criar elemento de notificação
     const notificacao = document.createElement('div');
     notificacao.className = `notificacao notificacao-${tipo}`;
     notificacao.textContent = mensagem;
@@ -182,29 +233,16 @@ function mostrarMensagem(mensagem, tipo = 'info') {
     }, 3000);
 }
 
-// Adicionar estilos de animação
+// 🔹 Animações usadas nas notificações
 const style = document.createElement('style');
 style.textContent = `
     @keyframes slideIn {
-        from {
-            transform: translateX(100%);
-            opacity: 0;
-        }
-        to {
-            transform: translateX(0);
-            opacity: 1;
-        }
+        from { transform: translateX(100%); opacity: 0; }
+        to   { transform: translateX(0);     opacity: 1; }
     }
-    
     @keyframes slideOut {
-        from {
-            transform: translateX(0);
-            opacity: 1;
-        }
-        to {
-            transform: translateX(100%);
-            opacity: 0;
-        }
+        from { transform: translateX(0);     opacity: 1; }
+        to   { transform: translateX(100%);  opacity: 0; }
     }
 `;
 document.head.appendChild(style);

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 27/11/2025 às 01:04
+-- Tempo de geração: 27/11/2025 às 02:09
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.0.30
 
@@ -87,7 +87,11 @@ INSERT INTO `depositos` (`id`, `usuario_id`, `material_id`, `peso_gramas`, `quan
 (25, 8, 1, 100, 1, 1, 'VRD004', 'Universidade Sustentável - Biblioteca', 'TXN17642016159554', 'processed', '2025-11-26 21:00:15'),
 (26, 8, 1, 100, 1, 1, 'VRD001', 'Shopping Verde - Piso 2', 'TXN17642016151332', 'processed', '2025-11-26 21:00:15'),
 (27, 8, 4, 20000, 200, 600, 'VRD003', 'Estação Metro Verdiva - Hall Principal', 'TXN17642016154868', 'processed', '2025-11-26 21:00:15'),
-(28, 8, 4, 20000, 200, 600, 'VRD003', 'Estação Metro Verdiva - Hall Principal', 'TXN17642016155430', 'processed', '2025-11-26 21:00:15');
+(28, 8, 4, 20000, 200, 600, 'VRD003', 'Estação Metro Verdiva - Hall Principal', 'TXN17642016155430', 'processed', '2025-11-26 21:00:15'),
+(29, 8, 5, 100, 1, 50, 'VRD003', 'Estação Metro Verdiva - Hall Principal', 'TXN17642035927978', 'processed', '2025-11-26 21:33:12'),
+(30, 8, 5, 100, 1, 50, 'VRD002', 'Supermercado Eco - Entrada', 'TXN17642035927061', 'processed', '2025-11-26 21:33:12'),
+(31, 8, 5, 1000, 10, 500, 'VRD002', 'Supermercado Eco - Entrada', 'TXN17642036479224', 'processed', '2025-11-26 21:34:07'),
+(32, 8, 5, 1000, 10, 500, 'VRD002', 'Supermercado Eco - Entrada', 'TXN17642036475253', 'processed', '2025-11-26 21:34:07');
 
 --
 -- Acionadores `depositos`
@@ -155,7 +159,8 @@ CREATE TABLE `pontos_usuario` (
 INSERT INTO `pontos_usuario` (`id`, `usuario_id`, `saldo_pontos`, `total_acumulado`, `total_resgatado`, `atualizado_em`) VALUES
 (1, 7, 0, 0, 0, '2025-11-26 13:53:22'),
 (2, 6, 0, 0, 0, '2025-11-26 13:53:22'),
-(4, 8, 2446, 2446, 0, '2025-11-26 21:00:15');
+(4, 8, 3546, 3546, 0, '2025-11-26 21:34:07'),
+(37, 9, 0, 0, 0, '2025-11-26 22:08:28');
 
 -- --------------------------------------------------------
 
@@ -246,7 +251,8 @@ CREATE TABLE `usuarios` (
 INSERT INTO `usuarios` (`id`, `cpf`, `email`, `senha`, `telefone`, `data_cadastro`) VALUES
 (6, '44885055890', 'natsumiayame00@gmail.com', '$2y$10$Hq3pxH2czIBq9oHqll.C/OG07TWmqQmmzSptoaRHTNVw2ebYIo/9e', '11888888888', '2025-11-14 07:29:31'),
 (7, '15635362589', 'natalia.xavier.silva16@gmail.com', '$2y$10$mZIi1GoC0kJY.7Rc5L6OLOkz0aegbeoMcFmTjt85Eiib2UyEIll9a', '11888888888', '2025-11-17 12:23:31'),
-(8, '25414523650', 'test@test.com', '$2y$10$sGvkqLHQJo5zjnC0hm8hKedbdakdQbcxIH/HP6PezWSqiNP6aVatm', '11855252555', '2025-11-26 14:30:27');
+(8, '25414523650', 'test@test.com', '$2y$10$sGvkqLHQJo5zjnC0hm8hKedbdakdQbcxIH/HP6PezWSqiNP6aVatm', '11855252555', '2025-11-26 14:30:27'),
+(9, '14752636585', 'kakashieusei@gmail.com', '$2y$10$b5FXS2oSevcczs0Q0bva3OPfd5OvZwT1KiRZExUdTJ3INvwkdsOdq', '11945525522', '2025-11-26 22:08:28');
 
 --
 -- Índices para tabelas despejadas
@@ -325,7 +331,7 @@ ALTER TABLE `codigos_redefinicao`
 -- AUTO_INCREMENT de tabela `depositos`
 --
 ALTER TABLE `depositos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT de tabela `materiais`
@@ -337,7 +343,7 @@ ALTER TABLE `materiais`
 -- AUTO_INCREMENT de tabela `pontos_usuario`
 --
 ALTER TABLE `pontos_usuario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT de tabela `recompensas`
@@ -355,7 +361,7 @@ ALTER TABLE `resgates`
 -- AUTO_INCREMENT de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Restrições para tabelas despejadas

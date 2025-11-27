@@ -11,15 +11,15 @@
         <!-- Header do Totem -->
         <div class="totem-header">
             <img src="Imagens/icone.png" alt="Verdiva logo" class="totem-logo">
-
         </div>
 
         <!-- Indicador de Pontos -->
-        <div class="points-info">
+        <div class="points-banner">
+            <div class="points-info">
                 <span class="points-label">Seus Pontos:</span>
-                <span class="points-value">
-                <span id="pontos-saldo">0</span> pts
-            </span>
+                <span class="points-value" id="spanSeusPontos">0 pts</span>
+            </div>
+            <div class="points-icon">ⓘ</div>
         </div>
 
         <!-- Título da Página -->
@@ -38,16 +38,15 @@
 
                     <div class="info-item">
                         <span class="info-icon">👤</span>
-                    <span class="info-label">Nome</span>
-                    <span class="info-value" id="perfil-nome">Maria Silva</span>
-
+                        <span class="info-label">Nome</span>
+                        <span class="info-value" id="perfil-nome">-</span>
                     </div>
 
                     <div class="info-item">
                         <span class="info-icon">✉️</span>
                         <div class="info-content">
                             <span class="info-label">Email</span>
-                            <span class="info-value" id="perfil-email">maria-silva@email.com</span>
+                            <span class="info-value" id="perfil-email">-</span>
                         </div>
                     </div>
 
@@ -55,8 +54,7 @@
                         <span class="info-icon">📍</span>
                         <div class="info-content">
                             <span class="info-label">Localização</span>
-                           <span class="info-value" id="perfil-localizacao">São Paulo</span>
-
+                            <span class="info-value" id="perfil-localizacao">-</span>
                         </div>
                     </div>
                 </div>
@@ -68,7 +66,7 @@
                 <div class="points-display-section">
                     <h3 class="section-title">Seus Pontos Totais</h3>
                     <div class="points-circle">
-                        <div class="points-number">1280</div>
+                        <div class="points-number" id="perfil-pontos">0</div>
                         <div class="points-unit">pts</div>
                     </div>
                     <p class="points-note">Continue adicionando materiais para ganhar mais pontos</p>
@@ -77,69 +75,38 @@
                 <!-- Histórico de Operações -->
                 <div class="history-section">
                     <h3 class="section-title">Histórico Recente</h3>
-                    <div class="history-list">
-                        <div class="history-item">
-                            <span class="history-icon">🏦</span>
-                            <div class="history-details">
-                            <div class="history-list" id="historico-lista">
-                             <!-- Itens serão inseridos via JavaScript -->
-                            </div>
-
-                            </div>
-                            <span class="history-points positive">+30 pts</span>
-                        </div>
-
-                        <div class="history-item">
-                            <span class="history-icon">🔄</span>
-                            <div class="history-details">
-                                <span class="history-desc">Resgate de Materiais</span>
-                                <span class="history-date">10/05/2024</span>
-                            </div>
-                            <span class="history-points">+5 pts</span>
-                        </div>
-
-                        <div class="history-item">
-                            <span class="history-icon">☕</span>
-                            <div class="history-details">
-                                <span class="history-desc">Resgate Coffee Voucher</span>
-                                <span class="history-date">08/05/2024</span>
-                            </div>
-                            <span class="history-points negative">-200 pts</span>
-                        </div>
-
-                        <div class="history-item">
-                            <span class="history-icon">🏦</span>
-                            <div class="history-details">
-                                <span class="history-desc">Depósito de Materiais</span>
-                                <span class="history-date">01/05/2024</span>
-                            </div>
-                            <span class="history-points positive">+45 pts</span>
-                        </div>
+                    <div class="history-list" id="historico-lista">
+                        <!-- Itens serão inseridos via JavaScript -->
                     </div>
                 </div>
             </div>
         </div>
 
      <!-- Botão de Voltar -->
-    <div class="footer-actions">
-        <a href="Homepage.html" class="back-button">← VOLTAR AO MENU</a>
-    </div>
+<div class="footer-actions">
+    <a href="Homepage.html" class="back-button">← VOLTAR AO MENU</a>
+
+    <!-- 🔹 Botão de Logout igual ao VOLTAR -->
+    <button id="btnLogout" class="back-button" style="margin-left: 10px;">
+        SAIR DA CONTA
+    </button>
 </div>
 
-<!-- SCRIPTS FICAM AQUI, ANTES DO </body> -->
+    
+</div>
+
+<!-- ORDEM DOS SCRIPTS É IMPORTANTE -->
+<script src="js/auth.js"></script>
 <script src="js/api-config.js"></script>
 <script src="js/perfil_usuario.js"></script>
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
-        // Adiciona a classe fade-in ao carregar a página
         document.body.classList.add('fade-in');
 
-        // Intercepta cliques em links internos
         document.querySelectorAll('a[href$=".html"]').forEach(link => {
             link.addEventListener('click', (e) => {
                 const targetUrl = link.getAttribute('href');
-                // Verifica se é um link interno para .html
                 if (targetUrl && targetUrl.endsWith('.html')) {
                     e.preventDefault();
                     handleTransition(targetUrl);
@@ -148,19 +115,13 @@
         });
 
         function handleTransition(url) {
-            // Adiciona a classe fade-out para iniciar a transição
             document.body.classList.remove('fade-in');
             document.body.classList.add('fade-out');
-
-            // Espera a transição terminar (500ms) e navega
             setTimeout(() => {
                 window.location.href = url;
             }, 500);
         }
     });
 </script>
-  <script src="js/auth.js"></script>
-  <script src="js/api-config.js"></script>
-  <script src="js/login.js"></script>
 </body>
 </html>

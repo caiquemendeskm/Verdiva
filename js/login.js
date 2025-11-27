@@ -1,7 +1,7 @@
 // login.js - Script para página de login
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Verificar se já está logado
+    // Se já estiver logado, vai direto pra homepage
     if (AuthManager.estaLogado()) {
         window.location.href = 'Homepage.html';
         return;
@@ -22,10 +22,11 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             
             try {
-                // Desabilitar botão durante requisição
                 const btnSubmit = formLogin.querySelector('button[type="submit"]');
-                btnSubmit.disabled = true;
-                btnSubmit.textContent = 'Entrando...';
+                if (btnSubmit) {
+                    btnSubmit.disabled = true;
+                    btnSubmit.textContent = 'Entrando...';
+                }
                 
                 const response = await UsuariosService.login(email, senha);
                 
@@ -36,16 +37,16 @@ document.addEventListener('DOMContentLoaded', () => {
                     }, 1000);
                 } else {
                     mostrarMensagem(response.message || 'Erro ao fazer login', 'error');
-                    btnSubmit.disabled = false;
-                    btnSubmit.textContent = 'Entrar';
                 }
             } catch (error) {
                 console.error('Erro no login:', error);
                 mostrarMensagem(error.message || 'Erro ao fazer login. Tente novamente.', 'error');
-                
+            } finally {
                 const btnSubmit = formLogin.querySelector('button[type="submit"]');
-                btnSubmit.disabled = false;
-                btnSubmit.textContent = 'Entrar';
+                if (btnSubmit) {
+                    btnSubmit.disabled = false;
+                    btnSubmit.textContent = 'Entrar';
+                }
             }
         });
     }
